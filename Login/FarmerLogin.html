@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Farmer Login Page</title>
+    <style>
+        body {
+            background-image: url('./images/farmerLoginImage.jpeg'); 
+            background-size: cover;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .login-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 5px;
+            text-align: center;
+			color : #02590F;
+			font-family : 'Times New Roman';
+			font-size : 30px;
+        }
+
+        .login-container img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .login-container input[type="submit"] {
+            background-color: #204338;
+            color: white;
+			font-size : 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #error-message {
+			background-color : #FBDBC6;
+            color: red;
+			font-weight : bold;
+			font-size : 20px;
+        }
+		a{
+			font-size : 20px;
+		}
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="./images/logo.jpeg" alt="Logo"> 
+        <h2>Farmer Login</h2>
+        <form id="login-form" action="farmerLogin.php" method="POST">   
+            <label for="username">Username:</label>
+			<input type="text" id="username" name="username" required><br>
+
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="password" required><br><br/>
+
+			<input type="submit" value="Login"><br/>
+			<p align = "left"> <a href="farmer_forgot_password.html">Lost password?</a></p>
+			<p align = "left"> <a href="farmerRegistration.php">Create An Account</a></p>
+        </form>
+        
+    </div>
+
+
+
+
+
+</body>
+</html>
+

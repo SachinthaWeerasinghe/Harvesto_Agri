@@ -1,0 +1,242 @@
+
+<html>
+    <head>
+        <title>Harvesto Customer Registration</title>  
+    </head>
+
+<body>
+<center>
+<h1> Harvesto Customer Registration Form </h1>
+
+
+<table border = 0 cellpadding = "10px">
+
+<tr>
+<td>       
+<label for="name">Full Name:</label>
+</td>
+<td>
+<input type="text" id="name" name="name" required>
+</td>
+</tr>
+<tr>
+<td>
+<label for="address">Address:</label>
+</td>
+<td>
+<input type="text" id="address" name="address" required>
+</td>
+</tr>
+
+<tr>
+<td>
+<label for="province">Province of Residence:</label>
+</td>
+<td>
+<select>
+<option value ="Western">Western</option>
+<option value = "Central"> Central</option>
+<option value = "Nothern"> Nothern</option>
+<option value = "Eastern"> Eastern </option>
+<option value = "Southern"> Southern </option>
+<option value = "North Central">North Central</option>
+<option value = "Uva"> Uva</option>
+<option value = "North Western"> North Western</option>
+<option value = "Sabaragamuwa"> Sabaragamuwa </option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td>
+<label for="phoneNo">Phone No : </label>
+</td>
+<td>
+<input type="text" id="phoneNo" name="phoneNo" pattern="[0-9]{1,10}" required>
+</td>
+</tr>
+
+<tr>
+<td>Email: </td>
+<td> <input type="text" id="email" name = "email" > <div id="div2"></div> </td>
+</tr>
+
+<tr>
+<td> Username: </td> 
+<td> <input type="text" id="username"><div id="div1"></div></td>
+</tr>
+
+
+
+<tr>
+<td> Password: </td>
+<td><input type="password" id="password"><div id="div3"></div> </td>
+</tr>
+
+<tr>
+<td>Confirm Password: </td>
+<td ><input type="password" id="confirmPassword"><div id="div4"></div> </td>
+</tr>
+
+<tr>
+<td   colspan = "2"> 
+<button type="submit" onclick="validate()"> Submit </button>
+</td>
+</tr>
+
+</table>
+
+
+
+         <script>
+            function validate()
+            {
+                var uname = document.getElementById("username").value;
+                var Email = document.getElementById("email").value;
+                var password = document.getElementById("password").value;
+		var confirmPassword = document.getElementById("confirmPassword").value;
+                
+                if(uname==="")
+                {
+                    document.getElementById("div1").innerHTML="Enter the Name! ";
+                    document.getElementById("div1").style.color="Red";        
+                }
+                else
+                {
+                    document.getElementById("div1").innerHTML="";
+                }
+                if(Email.indexOf("@")> -1)
+                {
+                    document.getElementById("div2").innerHTML="";
+                }
+                 else
+                {
+                    document.getElementById("div2").innerHTML="Email Addres is not valid!";
+                    document.getElementById("div2").style.color="Red";  
+                }
+                if(password.length<= 8)
+                {
+                    document.getElementById("div3").innerHTML="Recommand to enter pasword at least 8 character long";
+                    document.getElementById("div3").style.color="Red";
+                }
+                 else
+                {
+                    document.getElementById("div3").innerHTML="";
+                }
+                
+                if(confirmPassword != password)
+                {
+                    document.getElementById("div4").innerHTML="Password does not match!";
+                    document.getElementById("div4").style.color="Red";
+                }
+                else
+                {
+                    document.getElementById("div4").innerHTML="";
+                }
+            }
+        </script>
+		
+	
+<?php
+// Database connection
+$host = "localhost";
+$username = "phpuser";
+$password = "1234qwer";
+$database = "Harvesto_database";
+
+$conn = new mysqli($host, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Get user input
+
+/*
+$enteredName = $_POST['name'];
+$enteredAddress = $_POST['address'];
+$enteredProvince = $_POST['province'];
+$enteredPhoneNo = $_POST['phoneNo'];
+$enteredEmail = $_POST['email'];
+$enteredUsername = $_POST['username'];
+$enteredPassword = $_POST['password'];
+$enteredOther = $_POST['other'];
+*/
+
+// Query the database
+//$sql = "SELECT * FROM customer WHERE username = '$enteredUsername' AND password = '$enteredPassword'";
+
+//mysqli_query($conn, "UPDATE customer SET password = '$enteredPassword' WHERE username = '$enteredUsername'");
+
+//$sql="INSERT INTO customer (name, address, province , phoneNo, email, username, password, other) VALUES ('$_POST[name]','$_POST[address]','$_POST[province]','$_POST[phoneNo]','$_POST[email]', ,'$_POST[username]','$_POST[password]','$_POST[other]')";
+
+
+
+mysqli_query($conn, "INSERT INTO customer (name, address, province, phoneNo, email, username, password, other) VALUES ('$_POST[name]','$_POST[address]','$_POST[province]','$_POST[phoneNo]','$_POST[email]','$_POST[username]','$_POST[password]','$_POST[other]')");
+
+//$result = $conn->query($sql);
+
+echo '<script>alert("Your new pass has been updated successfully")</script>';
+
+
+//if ($result->num_rows == 1) {
+    // Valid login; redirect to the next page
+    //header("Location: next.html");
+	//echo "your password has been updated successfully.";
+//} else {
+    // Invalid login; display error message
+    //echo "Invalid Password";
+//}
+
+// Close the database connection
+$conn->close();
+?>
+				
+		
+</body>
+</html>
+
+
+
+//// working
+/*
+<?php
+// Database connection
+$host = "localhost";
+$username = "phpuser";
+$password = "1234qwer";
+$database = "Harvesto_database";
+
+$conn = new mysqli($host, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST["name"];
+    $address = $_POST["address"];
+    $province = $_POST["province"];
+    $phoneNo = $_POST["phoneNo"];
+    $email = $_POST["email"];
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    // You may want to add more fields and validation here.
+
+    // Perform data validation and sanitation as needed before inserting into the database.
+
+    // Query to insert data into the database
+    $sql = "INSERT INTO customer (name, address, province, phoneNo, email, username, password) 
+            VALUES ('$name', '$address', '$province', '$phoneNo', '$email', '$username', '$password')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo '<script>alert("Your registration was successful!")</script>';
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+// Close the database connection
+$conn->close();
+?>
+*/
